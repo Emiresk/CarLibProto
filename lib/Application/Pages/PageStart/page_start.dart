@@ -55,14 +55,14 @@ class PageStartStateComponent extends State<PageStart> {
                   IconButton(
                       onPressed: ()=>{} ,
                       icon: const Icon(
-                        BoxIcons.bx_plus_circle,
+                        LineAwesome.plus_circle_solid,
                         size: 30,
                       )
                   ),
                   IconButton(
                       onPressed: ()=>{} ,
                       icon: const Icon(
-                        BoxIcons.bx_cog,
+                        LineAwesome.cog_solid,
                         size: 30,
                       )
                   ),
@@ -71,7 +71,7 @@ class PageStartStateComponent extends State<PageStart> {
             ],
             leading: IconButton(
               onPressed: () => print ("Click"),
-              icon: Icon(BoxIcons.bx_menu_alt_left),
+              icon: Icon(LineAwesome.ellipsis_h_solid),
             ),
           ),
           bottomNavigationBar: Container(
@@ -92,25 +92,25 @@ class PageStartStateComponent extends State<PageStart> {
                 IconButton(
                     iconSize: 30,
                     onPressed: () => _loadWidget ( WidgetA() ),
-                    icon: Icon(BoxIcons.bxs_home )
+                    icon: Icon(LineAwesome.home_solid )
                 ),
                 IconButton(
 
                     iconSize: 30,
                     onPressed: () => _loadWidget ( WidgetB() ),
-                    icon: Icon(BoxIcons.bxs_calculator )
+                    icon: Icon(LineAwesome.calculator_solid )
                 ),
                 IconButton(
 
                     iconSize: 30,
                     onPressed: () => print("Click"),
-                    icon: Icon(BoxIcons.bxs_data)
+                    icon: Icon(LineAwesome.book_open_solid)
                 ),
                 IconButton(
 
                     iconSize: 30,
                     onPressed: () => print("Click"),
-                    icon: Icon(BoxIcons.bxs_user)
+                    icon: Icon(LineAwesome.user)
                 ),
               ],
             ),
