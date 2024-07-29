@@ -7,35 +7,35 @@ class WidgetB extends StatelessWidget {
   final Map<int, WidgetDataPrefab> _widgetDataPrefab = {
     0: WidgetDataPrefab(
       name: 'fuel_consumption',
-      icon: Icons.star,
+      icon: LineAwesome.sync_alt_solid,
       description: 'Fuel consumption calculator',
       isAvailable: true,
       isActive: true,
       isSoon: false,
     ),
     1: WidgetDataPrefab(
-      name: 'Widget 2',
-      icon: Icons.favorite,
-      description: 'This is widget 2',
+      name: 'distance',
+      icon: LineAwesome.ruler_solid,
+      description: 'Distance converter',
       isAvailable: true,
       isActive: false,
       isSoon: false,
     ),
     2: WidgetDataPrefab(
-      name: 'Widget 3',
-      icon: Icons.home,
-      description: 'This is widget 3',
-      isAvailable: false,
+      name: 'alcohol',
+      icon: LineAwesome.beer_solid,
+      description: 'Alcohol intoxication converter',
+      isAvailable: true,
       isActive: false,
       isSoon: false,
     ),
     3: WidgetDataPrefab(
-      name: 'Widget 4',
-      icon: Icons.work,
-      description: 'This is widget 4',
+      name: 'car_number',
+      icon: LineAwesome.money_check_solid,
+      description: 'Car number checker(Service)',
       isAvailable: true,
       isActive: false,
-      isSoon: true,
+      isSoon: false,
     ),
   };
 
@@ -43,12 +43,8 @@ class WidgetB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var _widgetDataBuilder = WidgetDataBuilder();
-    var _availableWidgets = _widgetDataPrefab.values.where((wData) => wData.isAvailable).toList();
-
-
-
-    print( "Total cards ==> " + _widgetDataPrefab.length.toString());
+    var widgetDataBuilder = WidgetDataBuilder();
+    var availableWidgets = _widgetDataPrefab.values.where((wData) => wData.isAvailable).toList();
 
     return Container(
       padding: EdgeInsets.all(5),
@@ -58,13 +54,13 @@ class WidgetB extends StatelessWidget {
             crossAxisSpacing: 20,
             mainAxisSpacing: 20
           ),
-          itemCount: _availableWidgets.length,
+          itemCount: availableWidgets.length,
           itemBuilder: (context, index)
           {
-            var data = _availableWidgets[index]!;
+            var data = availableWidgets[index]!;
             if ( data.isAvailable == true )
             {
-              return _widgetDataBuilder._generateCard(data);
+              return widgetDataBuilder._generateCard(data);
             }
           }
       ),
@@ -141,7 +137,7 @@ class WidgetDataBuilder {
 
   Container _showComingSoonCard ( dynamic data) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -151,7 +147,7 @@ class WidgetDataBuilder {
           ]
         ),
         borderRadius: BorderRadius.all(Radius.circular(15)),
-        boxShadow: const [ BoxShadow(
+        boxShadow: [ BoxShadow(
             color: Colors.black,
             blurRadius: 10,
             blurStyle: BlurStyle.outer,
@@ -159,6 +155,16 @@ class WidgetDataBuilder {
             spreadRadius: -5
         )],
       ),
+      child: const Column (
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(LineAwesome.lock_solid, size: 30,),
+            Text("Coming soon", style: TextStyle(
+              fontSize: 16
+            ),)
+          ],
+        )
     );
   }
 }
