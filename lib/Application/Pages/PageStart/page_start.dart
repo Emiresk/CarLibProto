@@ -14,19 +14,40 @@ class PageStart extends StatefulWidget {
 
 class PageStartStateComponent extends State<PageStart> {
 
-  void _loadWidget ( Widget _tartgetWidget ) {
+  Widget _selectedWidget = Container();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadWidget(WidgetA());
+  }
+
+  void _loadWidget(Widget _tartgetWidget) {
     setState(() {
       _selectedWidget = _tartgetWidget;
     });
   }
 
-  Widget _selectedWidget = Container();
+
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      child: Container (
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft,
+              colors: <Color>[
+                Color(0xFFe3faff),
+                Color(0xFFfff0d9),
+              ]
+          ),
+        ),
         child: Scaffold (
+          backgroundColor: Colors.transparent,
           appBar: AppBar(
+            backgroundColor: Colors.transparent,
             actions: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,7 +55,7 @@ class PageStartStateComponent extends State<PageStart> {
                   IconButton(
                       onPressed: ()=>{} ,
                       icon: const Icon(
-                    BoxIcons.bx_plus_circle,
+                        BoxIcons.bx_plus_circle,
                         size: 30,
                       )
                   ),
@@ -54,44 +75,39 @@ class PageStartStateComponent extends State<PageStart> {
             ),
           ),
           bottomNavigationBar: Container(
-
             height: 65,
             padding: EdgeInsets.all(10),
-            margin: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              boxShadow: const [ BoxShadow(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15)
+              ),
+              border: Border.all(
                 color: Colors.black,
-                blurRadius: 10,
-                blurStyle: BlurStyle.outer,
-                offset: Offset(0, 5),
-                spreadRadius: -5
-              )],
+              )
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                    color: Colors.lightBlueAccent,
                     iconSize: 30,
                     onPressed: () => _loadWidget ( WidgetA() ),
                     icon: Icon(BoxIcons.bxs_home )
                 ),
                 IconButton(
-                    color: Colors.lightBlueAccent,
+
                     iconSize: 30,
                     onPressed: () => _loadWidget ( WidgetB() ),
                     icon: Icon(BoxIcons.bxs_calculator )
                 ),
                 IconButton(
-                    color: Colors.lightBlueAccent,
+
                     iconSize: 30,
                     onPressed: () => print("Click"),
                     icon: Icon(BoxIcons.bxs_data)
                 ),
                 IconButton(
-                    color: Colors.lightBlueAccent,
+
                     iconSize: 30,
                     onPressed: () => print("Click"),
                     icon: Icon(BoxIcons.bxs_user)
@@ -100,16 +116,15 @@ class PageStartStateComponent extends State<PageStart> {
             ),
           ),
           body: Container(
-            margin: EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.all(15),
             child: AnimatedSwitcher(
               duration: Duration(milliseconds: 600),
               switchInCurve: Curves.easeIn,
               child: _selectedWidget,
             ),
-
           )
-        )
+        ),
+      ),
     );
   }
-
 }
