@@ -12,6 +12,7 @@ class WidgetB extends StatelessWidget {
       isAvailable: true,
       isActive: true,
       isSoon: false,
+      cardColor: 0xFFf6eac2,
     ),
     1: WidgetDataPrefab(
       name: 'distance',
@@ -20,6 +21,7 @@ class WidgetB extends StatelessWidget {
       isAvailable: true,
       isActive: false,
       isSoon: false,
+      cardColor: 0xFFa6c7ea,
     ),
     2: WidgetDataPrefab(
       name: 'alcohol',
@@ -28,14 +30,16 @@ class WidgetB extends StatelessWidget {
       isAvailable: true,
       isActive: false,
       isSoon: false,
+      cardColor: 0xFFa2e1db,
     ),
     3: WidgetDataPrefab(
       name: 'car_number',
       emoji: "🔡",
-      description: 'Car number checker(Service)',
+      description: 'Car number checker',
       isAvailable: true,
       isActive: false,
       isSoon: false,
+      cardColor: 0xFFffc8a2,
     ),
   };
 
@@ -47,12 +51,14 @@ class WidgetB extends StatelessWidget {
     var availableWidgets = _widgetDataPrefab.values.where((wData) => wData.isAvailable).toList();
 
     return Container(
-      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.all(15),
+
       child: GridView.builder (
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20
+            crossAxisSpacing: 15,
+            mainAxisSpacing: 15,
+            childAspectRatio: 1.75/1
           ),
           itemCount: availableWidgets.length,
           itemBuilder: (context, index)
@@ -74,7 +80,8 @@ class WidgetDataPrefab {
   final String description;
   final bool isAvailable;  // Show in tree
   final bool isActive;     // OnClick is working
-  final bool isSoon;       // Lock icon
+  final bool isSoon;
+  final dynamic cardColor;// Lock icon
 
   WidgetDataPrefab({
     required this.name,
@@ -82,7 +89,8 @@ class WidgetDataPrefab {
     required this.description,
     required this.isAvailable,
     required this.isActive,
-    required this.isSoon
+    required this.isSoon,
+    required this.cardColor,
   });
 }
 
@@ -90,40 +98,44 @@ class WidgetDataBuilder {
   InkWell _generateCard ( dynamic data ) {
     return InkWell(
       onTap: () => print("Click on button " + data.description),
+      enableFeedback: true,
       child: data.isSoon ? _showComingSoonCard(data) : _showNormalCard(data),
     );
   }
 
   Container _showNormalCard ( dynamic data ) {
+
+    print( data );
+
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey.shade500,
+        color: Color(data.cardColor),
         borderRadius: BorderRadius.all(Radius.circular(15)),
         boxShadow: const [ BoxShadow(
             color: Colors.black,
-            blurRadius: 10,
-            blurStyle: BlurStyle.outer,
-            offset: Offset(0, 5),
+            blurRadius: 5,
+            blurStyle: BlurStyle.normal,
+            offset: Offset(0, 0),
             spreadRadius: -5
         )],
       ),
       child: Stack (
         children: [
           Positioned(
-              top: 15,
-              left: 15,
+              top: 5,
+              left: 10,
               child: Text(
                   data.emoji,
                   style: TextStyle(
-                    fontSize: 36
+                    fontSize: 30
                   ),
               ),
           ),
           Positioned(
-              bottom: 15,
-              right: 15,
+              bottom: 10,
+              right: 10,
               child: SizedBox (
-                  width: 100,
+                  width: 120,
                   child: AutoSizeText(
                     data.description,
                     textAlign: TextAlign.end,
