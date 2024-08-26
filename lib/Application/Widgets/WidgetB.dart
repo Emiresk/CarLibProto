@@ -7,7 +7,7 @@ class WidgetB extends StatelessWidget {
   final Map<int, WidgetDataPrefab> _widgetDataPrefab = {
     0: WidgetDataPrefab(
       name: 'fuel_consumption',
-      icon: LineAwesome.sync_alt_solid,
+      emoji: "⛽",
       description: 'Fuel consumption calculator',
       isAvailable: true,
       isActive: true,
@@ -15,7 +15,7 @@ class WidgetB extends StatelessWidget {
     ),
     1: WidgetDataPrefab(
       name: 'distance',
-      icon: LineAwesome.ruler_solid,
+      emoji: "🛣",
       description: 'Distance converter',
       isAvailable: true,
       isActive: false,
@@ -23,7 +23,7 @@ class WidgetB extends StatelessWidget {
     ),
     2: WidgetDataPrefab(
       name: 'alcohol',
-      icon: LineAwesome.beer_solid,
+      emoji: "🍺",
       description: 'Alcohol intoxication converter',
       isAvailable: true,
       isActive: false,
@@ -31,7 +31,7 @@ class WidgetB extends StatelessWidget {
     ),
     3: WidgetDataPrefab(
       name: 'car_number',
-      icon: LineAwesome.money_check_solid,
+      emoji: "🔡",
       description: 'Car number checker(Service)',
       isAvailable: true,
       isActive: false,
@@ -47,7 +47,7 @@ class WidgetB extends StatelessWidget {
     var availableWidgets = _widgetDataPrefab.values.where((wData) => wData.isAvailable).toList();
 
     return Container(
-      padding: EdgeInsets.all(5),
+      padding: EdgeInsets.all(10),
       child: GridView.builder (
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -70,7 +70,7 @@ class WidgetB extends StatelessWidget {
 
 class WidgetDataPrefab {
   final String name;
-  final IconData icon;
+  final String emoji;
   final String description;
   final bool isAvailable;  // Show in tree
   final bool isActive;     // OnClick is working
@@ -78,7 +78,7 @@ class WidgetDataPrefab {
 
   WidgetDataPrefab({
     required this.name,
-    required this.icon,
+    required this.emoji,
     required this.description,
     required this.isAvailable,
     required this.isActive,
@@ -110,16 +110,18 @@ class WidgetDataBuilder {
       child: Stack (
         children: [
           Positioned(
-              top: 10,
-              left: 10,
-              child: Icon(
-                  size: 48,
-                  data.icon
-              )
+              top: 15,
+              left: 15,
+              child: Text(
+                  data.emoji,
+                  style: TextStyle(
+                    fontSize: 36
+                  ),
+              ),
           ),
           Positioned(
-              bottom: 10,
-              right: 10,
+              bottom: 15,
+              right: 15,
               child: SizedBox (
                   width: 100,
                   child: AutoSizeText(
