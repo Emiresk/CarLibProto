@@ -52,14 +52,13 @@ class PageStartStateComponent extends State<PageStart> {
           ),
           backgroundColor: Colors.transparent,
           body: Container(
-            margin: const EdgeInsets.only(top: 25),
+            margin: const EdgeInsets.only(top: 15),
             child: Column (
               children: [
                 Container(
                   alignment: Alignment.center,
-                  height: 130,
+                  height: 100,
                   child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("Welcome to MyCarTool", style: TextStyle(
                         color: Colors.white,
@@ -72,9 +71,6 @@ class PageStartStateComponent extends State<PageStart> {
                       )),
                     ],
                   )
-                ),
-                const SizedBox(
-                  height: 10,
                 ),
                 Expanded(
                     child: Container(
