@@ -33,59 +33,74 @@ class PageStartStateComponent extends State<PageStart> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container (
+      child: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.bottomRight,
-              end: Alignment.topLeft,
               colors: <Color>[
-                Color(0xFFe3faff),
-                Color(0xFFfff0d9),
-              ]
+                Color(0xFF8b79ff),
+                Color(0xFF50c6f6),
+                Color(0xFF50c6f6),
+              ],
+            begin: Alignment.topCenter,
+            end: Alignment.center,
+            stops: [ 0, 0.35, 1 ],
           ),
         ),
-        child: Scaffold (
-          backgroundColor: Colors.transparent,
+        child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
-            actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                      onPressed: ()=>{} ,
-                      icon: const Icon(
-                        LineAwesome.plus_circle_solid,
-                        size: 30,
-                      )
-                  ),
-                  IconButton(
-                      onPressed: ()=>{} ,
-                      icon: const Icon(
-                        LineAwesome.cog_solid,
-                        size: 30,
-                      )
-                  ),
-                ],
-              )
-            ],
-            leading: IconButton(
-              onPressed: () => print ("Click"),
-              icon: Icon(LineAwesome.ellipsis_h_solid),
-            ),
+          ),
+          backgroundColor: Colors.transparent,
+          body: Container(
+            margin: const EdgeInsets.only(top: 25),
+            child: Column (
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  height: 130,
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Welcome to MyCarTool", style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500
+                      )),
+                      Text("Can we help you?", style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500
+                      )),
+                    ],
+                  )
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Expanded(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+
+                      child: AnimatedSwitcher(
+                        duration: Duration(milliseconds: 600),
+                        switchInCurve: Curves.easeIn,
+                        child: _selectedWidget,
+                      ),
+                    )
+                )
+              ],
+            )
           ),
           bottomNavigationBar: Container(
-            height: 65,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15)
-              ),
-              border: Border.all(
-                color: Colors.black,
-              )
+            decoration: const BoxDecoration(
+              color: Colors.white,
             ),
+            height: 60,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -101,13 +116,11 @@ class PageStartStateComponent extends State<PageStart> {
                     icon: Icon(LineAwesome.calculator_solid )
                 ),
                 IconButton(
-
                     iconSize: 30,
                     onPressed: () => print("Click"),
                     icon: Icon(LineAwesome.book_open_solid)
                 ),
                 IconButton(
-
                     iconSize: 30,
                     onPressed: () => print("Click"),
                     icon: Icon(LineAwesome.user)
@@ -115,16 +128,8 @@ class PageStartStateComponent extends State<PageStart> {
               ],
             ),
           ),
-          body: Container(
-            margin: const EdgeInsets.all(15),
-            child: AnimatedSwitcher(
-              duration: Duration(milliseconds: 600),
-              switchInCurve: Curves.easeIn,
-              child: _selectedWidget,
-            ),
-          )
-        ),
-      ),
+        )
+      )
     );
   }
 }
