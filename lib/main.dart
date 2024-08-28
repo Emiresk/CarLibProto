@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:carlibproto/application/core/application.dart';
 
-import 'package:carlibproto/Application/Bootstrap/Application.dart';
 void main () async {
-  runApp(Application() );
+  runApp( Application() );
 }

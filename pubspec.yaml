@@ -39,7 +39,7 @@ dependencies:
   slang: ^3.31.1
   icons_plus: ^5.0.0
   auto_size_text: ^3.0.0
-  connectivity_plus: ^5.0.2
+  connectivity_plus: ^6.0.5
   shared_preferences: ^2.2.3
   google_fonts: ^6.2.1
   cached_network_image: ^3.3.1
